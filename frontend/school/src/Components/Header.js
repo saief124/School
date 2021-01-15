@@ -1,14 +1,50 @@
 import React from 'react'
-import {Navbar, Nav, Button} from 'react-bootstrap'
+import {Navbar, Nav, Button, NavDropdown} from 'react-bootstrap'
 
-const Header=()=>{
+const handleLoginRender=(isLoggedIn)=>{
+    if (isLoggedIn){
+        return(
+            <>
+            <Nav.Link href="/logout">Logout</Nav.Link><br></br>
+            <Nav.Link href="/instructors">Instructor Page</Nav.Link>
+            </>
+        )
+    }else{
+        return(
+            <>
+            <Nav.Link href="/login">Login</Nav.Link>
+            </>
+        )
+    }
+}
+const Header=(props)=>{
+   
     return(
        
-            <Nav>
-            <Nav.Item> <Nav.Link href="/">Home  </Nav.Link> </Nav.Item>
-            <Nav.Item> <Nav.Link href="/students">Student  </Nav.Link> </Nav.Item>
-            <Nav.Item><Nav.Link href="/instructors">Instructor  </Nav.Link></Nav.Item>
+            <Navbar bg="light" expand="lg">
+           
+            {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+            </Navbar.Collapse> */}
+            
+            <Nav className="mr-auto">
+            <Nav.Link className="mr-auto" href="/">Home  </Nav.Link> 
+                <NavDropdown className="mr-auto" title="Instructor " id="basic-nav-dropdown">
+                    {handleLoginRender(props.isLoggedIn)} 
+                    
+                </NavDropdown>
+                <NavDropdown className="mr-auto" title="Student " id="basic-nav-dropdown"> 
+                    
+                    
+                    <NavDropdown.Item href="/students">  Login</NavDropdown.Item>
+                </NavDropdown> 
+
+            
+            {/* <Nav.Link className="mr-auto" href="/students">Student  </Nav.Link>   */}
+            {/* <Nav.Link className="mr-auto" href="/instructors">Instructor  </Nav.Link> */}
+            {/* {handleLoginRender(props.isLoggedIn)} */}
             </Nav>
+            </Navbar>
         
         // <h1>Test</h1>
     )

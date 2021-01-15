@@ -5,24 +5,43 @@ import Students from './Components/Students'
 import Instructors from './Components/Instructors'
 import HomePage from './Components/HomePage'
 import Header from './Components/Header'
+import Login from './Components/Login'
 
-function App() {
-  return (
-    <div className="App">
-      {/* <header className="App-header"> */}
-      
-        <Router>
-          <Header/>
-          <Switch>
-          <Route exact path='/' component={HomePage}/>
-          <Route exact path='/students' component={Students}/>
-          <Route exact path='/instructors' component={Instructors}/>
-          <Route component={()=>{return <Redirect to='/'/>}}/>
-          </Switch>
-        </Router>
-      {/* </header> */}
-    </div>
-  );
+class App extends React.Component {
+  state={
+    isLoggedIn: false
+  }
+  componentDidMount(){
+    if(localStorage.getItem('auth_key')){
+      this.setState({isLoggedIn: true})
+    }
+  }
+  render(){
+    return (
+      <div className="App">
+        {/* <header className="App-header"> */}
+        
+          <Router>
+            <Header isLoggedIn={this.state.isLoggedIn} />
+            <Switch>
+            <Route exact path='/' component={HomePage}/>
+            <Route exact path='/students' component={Students}/>
+            <Route exact path='/instructors' component={Instructors}/>
+            <Route exact path ="/login" component= {()=>{
+                return <Login />
+              }}/>
+            <Route exact path ="/logout" component = {()=>{
+              localStorage.clear()
+              this.setState({isLoggedIn: false})
+              return <Redirect to="/"/>
+            }}/>  
+            <Route component={()=>{return <Redirect to='/'/>}}/>
+            </Switch>
+          </Router>
+        {/* </header> */}
+      </div>
+    );
+  }
 }
 
 export default App;
