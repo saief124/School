@@ -21,19 +21,19 @@ const Header=(props)=>{
    
     return(
        
-            <Navbar bg="light" expand="lg">
-           
-            {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar bg="light" expand="lg" sticky="top">
+               
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-            </Navbar.Collapse> */}
+            </Navbar.Collapse>
             
-            <Nav className="mr-auto">
-            <Nav.Link className="mr-auto" href="/">Home  </Nav.Link> 
-                <NavDropdown className="mr-auto" title="Instructor " id="basic-nav-dropdown">
+            <Nav >
+            <Nav.Link  href="/">Home  </Nav.Link> 
+                <NavDropdown title="Instructor " id="basic-nav-dropdown">
                     {handleLoginRender(props.isLoggedIn)} 
                     
                 </NavDropdown>
-                <NavDropdown className="mr-auto" title="Student " id="basic-nav-dropdown"> 
+                <NavDropdown title="Student " id="basic-nav-dropdown"> 
                     
                     
                     <NavDropdown.Item href="/students">  Login</NavDropdown.Item>

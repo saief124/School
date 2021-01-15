@@ -6,6 +6,7 @@ import Instructors from './Components/Instructors'
 import HomePage from './Components/HomePage'
 import Header from './Components/Header'
 import Login from './Components/Login'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component {
   state={
