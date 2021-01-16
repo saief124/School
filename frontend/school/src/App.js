@@ -17,19 +17,25 @@ class App extends React.Component {
       this.setState({isLoggedIn: true})
     }
   }
+  handleLogin=()=>{
+    if(localStorage.getItem('auth_key')){
+      this.setState({isLoggedIn: true})
+    }
+  }
+
   render(){
     return (
       <div className="App">
         {/* <header className="App-header"> */}
         
           <Router>
-            <Header isLoggedIn={this.state.isLoggedIn} />
+            <Header handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} />
             <Switch>
             <Route exact path='/' component={HomePage}/>
             <Route exact path='/students' component={Students}/>
             <Route exact path='/instructors' component={Instructors}/>
             <Route exact path ="/login" component= {()=>{
-                return <Login />
+                return <Login handleLogin={this.handleLogin}/>
               }}/>
             <Route exact path ="/logout" component = {()=>{
               localStorage.clear()

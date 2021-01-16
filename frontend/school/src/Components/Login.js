@@ -40,7 +40,7 @@ class Login extends Component {
       .then(token=> {
         if (token["auth_key"]){
         localStorage.setItem('auth_key', token["auth_key"])
-        // this.props.handleLogin()
+        this.props.handleLogin()
         this.props.history.push('./')
         }else{
          alert(token["msg"])
