@@ -9,6 +9,7 @@ function CourseContainer(props) {
                 key={course.id}
                 course={course}
                 deleteCourse={props.deleteCourse}
+                editCourse={props.editCourse}
                 />)}
         </div>
     );

@@ -5,7 +5,7 @@ class InstructorsController < ApplicationController
         
         render json: current_user.as_json(
             except: [:password_digest, :created_at, :updated_at],
-            include: {courses: {only: [:course_name, :content]}}
+            include: {courses: {only: [:id, :course_name, :content]}}
         ), status: 200
         else
             render :json =>{:msg => "Login First.."}

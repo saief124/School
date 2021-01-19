@@ -1,27 +1,45 @@
 import React, { Component } from 'react';
+
 import { Button, Form } from 'react-bootstrap';
 
-class CourseForm extends Component {
+class CourseUpdateForm extends Component {
     initialState={
-        course_name:"",
-        content:""
+        id:this.props.selectedCourse.id,
+        course_name:this.props.selectedCourse.course_name,
+        content:this.props.selectedCourse.content
     }
     state= this.initialState
+
+
+    componentDidUpdate(prevProps) {
+        if (this.props.selectedCourse !== prevProps.selectedCourse){
+            const {id, course_name, content} = this.props.selectedCourse
+            this.setState({id, course_name, content})
+        }
+    }
     handleInputChange =(e)=>{
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     handleSubmit = (e) =>{
         e.preventDefault()
-        this.props.addCourse(this.state)
-        this.setState(this.initialState)
+        this.props.updateCourse(this.state)
+        this.setState({
+            id: null,
+            course_name:"",
+            content:""})
     }
+
+   
+   
+
     render() {
+        
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>
+                    <h2>Edit Form</h2>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Course Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Course Name" name="course_name" onChange={this.handleInputChange} value={this.state.course_name} />
@@ -31,11 +49,13 @@ class CourseForm extends Component {
                         <Form.Control as="textarea" rows={6} name="content" onChange={this.handleInputChange} value={this.state.content}/>
                     </Form.Group>
                     <Button variant="primary" type="submit" text-align="center">Submit</Button>
-                  
+                
                 </Form>
             </div>
         );
     }
 }
 
-export default CourseForm;
+
+
+export default CourseUpdateForm;
