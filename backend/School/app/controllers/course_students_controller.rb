@@ -1,4 +1,5 @@
 class CourseStudentsController < ApplicationController
+    before_action :authenticate!, only: [:create, :destroy]
     def index
         course_students=CourseStudent.all
         render json: course_students.as_json(

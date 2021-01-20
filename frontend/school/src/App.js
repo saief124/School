@@ -6,6 +6,7 @@ import Instructors from './Components/Instructors'
 import HomePage from './Components/HomePage'
 import Header from './Components/Header'
 import Login from './Components/Login'
+import StudentLogin from './Components/StudentLogin'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component {
@@ -41,6 +42,9 @@ class App extends React.Component {
               localStorage.clear()
               this.setState({isLoggedIn: false})
               return <Redirect to="/"/>
+            }}/>
+            <Route exact path="/studentlogin" component={()=>{
+              return <StudentLogin />
             }}/>  
             <Route component={()=>{return <Redirect to='/'/>}}/>
             </Switch>
