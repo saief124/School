@@ -17,6 +17,22 @@ const handleLoginRender=(isLoggedIn)=>{
         )
     }
 }
+
+const handleStudentLognRender=(studentisLoggedIn)=>{
+    if (studentisLoggedIn){
+        return(
+            <>
+            <Nav.Link href="/studentlogout">Logout</Nav.Link><br></br>
+            <Nav.Link href="students">Student Page</Nav.Link>
+            </>
+        )
+    }else{
+        return(
+            <Nav.Link href="/studentlogin">Login</Nav.Link>
+        )
+    }
+
+}
 const Header=(props)=>{
    
     return(
@@ -34,9 +50,8 @@ const Header=(props)=>{
                     
                 </NavDropdown>
                 <NavDropdown title="Student " id="basic-nav-dropdown"> 
+                    {handleStudentLognRender(props.studentisLoggedIn)}
                     
-                    
-                    <NavDropdown.Item href="/studentlogin">  Login</NavDropdown.Item>
                 </NavDropdown> 
 
             

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :students
   resources :instructors
   post '/login', to: 'sessions#create'
-  
+  post '/studentlogin', to: 'student_sessions#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -26,23 +26,23 @@ class StudentLogin extends Component {
               email: this.state.email,            
               password: this.state.password    
       }
-      console.log(User)
-    //   fetch('http://localhost:3000/login',{
-    //       method: 'POST',
-    //       headers:{
-    //           'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify(User)
-    //   }).then(res=>res.json())
-    //   .then(token=> {
-    //     if (token["auth_key"]){
-    //     localStorage.setItem('auth_key', token["auth_key"])
-    //     this.props.handleLogin()
-    //     this.props.history.push('./')
-    //     }else{
-    //      alert(token["msg"])
-    //     }
-    //   })
+    //   console.log(User)
+      fetch('http://localhost:3000/studentlogin',{
+          method: 'POST',
+          headers:{
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(User)
+      }).then(res=>res.json())
+      .then(token=> {
+        if (token["student_auth_key"]){
+        localStorage.setItem('student_auth_key', token["student_auth_key"])
+        this.props.handleLogin()
+        this.props.history.push('./students')
+        }else{
+         alert(token["msg"])
+        }
+      })
       
     
   }
