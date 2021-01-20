@@ -11,11 +11,11 @@ class HomePage extends React.Component{
             color: "#FBFBFB",
             fontFamily: "Roboto"
         } 
-        const middle = {
-            fontSize: 20,
-            fontFamily: "Roboto",
-            marginRight: "50"
-        }
+        // const middle = {
+        //     fontSize: 20,
+        //     fontFamily: "Roboto",
+        //     marginRight: "50"
+        // }
         return (
             <Container fluid>
                 <Row style={row} > 

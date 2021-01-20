@@ -16,10 +16,10 @@ class CoursesController < ApplicationController
 
     def create
         if current_user
-            
+            assignment=params["assignment"]
             course_name=params["course_name"]
             content=params["content"]
-            course= Course.create(course_name:course_name, content:content, instructor_id: current_user.id)
+            course= Course.create(course_name:course_name, content:content, assignment:assignment, instructor_id: current_user.id)
             render json: course, status: 201 
         else
             render :json =>{:msg=> "You are not authorized"}
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
             id=params[:id].to_i
             course=Course.find_by(id: id)
 
-            course.update(course_name:params["course_name"], content:params["content"], instructor_id: current_user.id)
+            course.update(course_name:params["course_name"], content:params["content"], assignment:params["assignment"], instructor_id: current_user.id)
             render json: course, status: 201 
         else
             render json: {:msg=>"You are not authorized"}

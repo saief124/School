@@ -6,7 +6,8 @@ class CourseUpdateForm extends Component {
     initialState={
         id:this.props.selectedCourse.id,
         course_name:this.props.selectedCourse.course_name,
-        content:this.props.selectedCourse.content
+        content:this.props.selectedCourse.content,
+        assignment:this.props.selectedCourse.assignment
     }
     state= this.initialState
 
@@ -28,7 +29,9 @@ class CourseUpdateForm extends Component {
         this.setState({
             id: null,
             course_name:"",
-            content:""})
+            content:"",
+            assignment:""
+        })
     }
 
    
@@ -47,6 +50,10 @@ class CourseUpdateForm extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Course Content</Form.Label>
                         <Form.Control as="textarea" rows={6} name="content" onChange={this.handleInputChange} value={this.state.content}/>
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Course Assignment</Form.Label>
+                        <Form.Control as="textarea" rows={3} name="assignment" onChange={this.handleInputChange} value={this.state.assignment}/>
                     </Form.Group>
                     <Button variant="primary" type="submit" text-align="center">Submit</Button>
                 

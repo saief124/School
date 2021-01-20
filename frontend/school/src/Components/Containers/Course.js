@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Container, Row, Col, Accordion, Card } from 'react-bootstrap';
 
 function Course(props) {
-    const { course_name, content}=props.course
+    const { course_name, content, assignment, url}=props.course
     return (
         <div>
               <Container>
@@ -19,20 +19,38 @@ function Course(props) {
                 </Row>
                 <Row>
                     <Col>
-                    <Accordion>
-                    <Card>
-                        <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            Course Content
-                        </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                        <Card.Body>{content}</Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                
-                    </Accordion>
+                        <Accordion>
+                        <Card>
+                            <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                Course Content
+                            </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                            <Card.Body>{content}</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    
+                        </Accordion>
                     </Col>                           
+                </Row>
+                <Row>
+                    <Col>
+                        <Accordion>
+                        <Card>
+                            <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                Assignment
+                            </Accordion.Toggle>
+                            </Card.Header>
+                            <Accordion.Collapse eventKey="0">
+                            <Card.Body>{assignment}</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    
+                        </Accordion>  
+                    </Col>
+                    
                 </Row>                         
              
                 </Container>

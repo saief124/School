@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
                     
                     render json: student_user.as_json(
                         except: [:password_digest, :created_at, :updated_at],
-                        include: [courses: {only:[:id, :course_name, :content ]} ]
+                        include: [courses: {only:[:id, :course_name, :content, :assignment, :url ]} ]
                         
                         ), status: 200
         else

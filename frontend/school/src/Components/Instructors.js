@@ -37,18 +37,7 @@ class Instructors extends React.Component{
             .then(res=>res.json())
             .then(user=>this.setState({user: user})
             )
-            fetch(students_url,{
-                method: 'GET',
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Auth-Key': localStorage.getItem('auth_key')
-                }                
-            })
-            .then(res=>res.json())
-            .then(students=>
-                // console.log(students)
-                this.setState({students: students})
-            )
+
         }
     handleClick=()=>{
         let newBoolean=!this.state.display
@@ -57,6 +46,18 @@ class Instructors extends React.Component{
     handleClickAdd=()=>{
         let newBoolean=!this.state.displayAddStudent
         this.setState({displayAddStudent: newBoolean})
+        fetch(students_url,{
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Auth-Key': localStorage.getItem('auth_key')
+            }                
+        })
+        .then(res=>res.json())
+        .then(students=>
+            // console.log(students)
+            this.setState({students: students})
+        )
     }
     handleClickRemove=()=>{
         let newBoolean=!this.state.displayRemoveStudent
@@ -66,7 +67,8 @@ class Instructors extends React.Component{
     addCourse=(course)=>{
         const newCourse={
             course_name: course.course_name,
-            content: course.content
+            content: course.content,
+            assignment: course.assignment
         }
            fetch(course_url,{
                 method: 'POST',
@@ -81,7 +83,7 @@ class Instructors extends React.Component{
                 const course_item=[...this.state.user.courses, addedCourse]
                 this.setState({user:{courses: course_item}})
             })
-        // console.log(newCourse)
+        .catch(error=>alert(error))
     }
 
     deleteCourse=(course)=>{
@@ -123,12 +125,13 @@ class Instructors extends React.Component{
             body: JSON.stringify(updatedCourse)   
         }).then(res=>res.json())
         .then(courseObj =>{
-            const courseList=[... this.state.user.courses].map(course=>{
+            const courseList=[...this.state.user.courses].map(course=>{
                 return course.id === courseObj.id ? courseObj : course
             })
-            // console.log(courseObj)
+            
             this.setState({ user:{courses:courseList}, selectedCourse:{} })
         })
+        .catch(error=>alert(error))
         let updateBool=!this.state.displayEdit
         this.setState({displayEdit:updateBool})
         

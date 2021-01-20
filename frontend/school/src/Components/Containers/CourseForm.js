@@ -4,7 +4,8 @@ import { Button, Form } from 'react-bootstrap';
 class CourseForm extends Component {
     initialState={
         course_name:"",
-        content:""
+        content:"",
+        assignment:""
     }
     state= this.initialState
     handleInputChange =(e)=>{
