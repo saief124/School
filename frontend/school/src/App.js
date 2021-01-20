@@ -7,6 +7,7 @@ import HomePage from './Components/HomePage'
 import Header from './Components/Header'
 import Login from './Components/Login'
 import StudentLogin from './Components/StudentLogin'
+import StudentProfile from './Components/StudentProfile'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
             <Route exact path='/' component={HomePage}/>
             <Route exact path='/students' component={Students}/>
             <Route exact path='/instructors' component={Instructors}/>
+            <Route exact path='/studentprofile' component={StudentProfile}/>
             {this.state.studentisLoggedIn? 
             null:             
             <Route exact path ="/login" component= {()=>{

@@ -24,6 +24,7 @@ const handleStudentLognRender=(studentisLoggedIn)=>{
             <>
             <Nav.Link href="/studentlogout">Logout</Nav.Link><br></br>
             <Nav.Link href="students">Student Page</Nav.Link>
+            <Nav.Link href="studentprofile">Student Profile Page</Nav.Link>
             </>
         )
     }else{
@@ -44,7 +45,7 @@ const Header=(props)=>{
             </Navbar.Collapse>
             
             <Nav >
-            <Nav.Link  href="/">Home  </Nav.Link> 
+            <Nav.Link  href="/"> Home </Nav.Link> 
                 <NavDropdown title="Instructor " id="basic-nav-dropdown">
                     {handleLoginRender(props.isLoggedIn)} 
                     

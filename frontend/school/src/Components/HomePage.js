@@ -20,6 +20,7 @@ class HomePage extends React.Component{
             <Container fluid>
                 <Row style={row} > 
                     <Col style={right}> . </Col>
+                    
                     <Col> <h1>Home Page</h1> </Col>
                 </Row>
             </Container>
