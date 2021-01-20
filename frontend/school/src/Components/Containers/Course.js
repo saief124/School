@@ -13,7 +13,7 @@ function Course(props) {
                     <Col md="auto">
                     <Button variant="primary" size="sm" onClick={()=>props.deleteCourse(props.course)}>✘</Button>              
                     </Col>
-                    <Col>
+                    <Col md="auto">
                     <Button variant="primary" size="sm" onClick={()=>props.editCourse(props.course)}>✎</Button>          
                     </Col>
                 </Row>
@@ -32,9 +32,8 @@ function Course(props) {
                     </Card>
                 
                     </Accordion>
-                    {/* <p>Course Content: {content} </p> */}
-                    </Col>                    
-                </Row>
+                    </Col>                           
+                </Row>                         
              
                 </Container>
             

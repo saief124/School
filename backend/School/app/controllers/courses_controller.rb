@@ -3,11 +3,11 @@ class CoursesController < ApplicationController
     before_action :authenticate!, only: [:index, :create]
     def index
         if current_user
-            
+        # courses=Instructor.first.courses
         courses=current_user.courses
         render json: courses.as_json(
             except: [:password_digest, :created_at, :updated_at],
-            include: [instructor: {only: [:firstname, :lastname]}, course_students: {only: :student_id}]
+            include: [students: {only: [:id, :firstname, :lastname]}, course_students: {only: [:id, :course_id, :student_id]}]
         ), status: 200
         else
             render :json =>{:msg => "Login First.."}
