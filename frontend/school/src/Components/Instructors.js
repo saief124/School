@@ -21,13 +21,8 @@ class Instructors extends React.Component{
         selectedCourse: {},
         displayEdit: false,
         students:[],
-
-        // course_students:{
-        //     id:null,
-        //     course_name:"",
-        //     students:[]
-        // }
-
+        displayRemoveStudent: false,
+        displayAddStudent: false
     }
 
     componentDidMount(){
@@ -59,6 +54,15 @@ class Instructors extends React.Component{
         let newBoolean=!this.state.display
         this.setState({display: newBoolean})
     }
+    handleClickAdd=()=>{
+        let newBoolean=!this.state.displayAddStudent
+        this.setState({displayAddStudent: newBoolean})
+    }
+    handleClickRemove=()=>{
+        let newBoolean=!this.state.displayRemoveStudent
+        this.setState({displayRemoveStudent: newBoolean})
+    }
+
     addCourse=(course)=>{
         const newCourse={
             course_name: course.course_name,
@@ -180,12 +184,12 @@ class Instructors extends React.Component{
                 </Row>
                 <Row>
                     <Col>
-                            <br></br><Button >Add student to a course</Button>
-                            <CourseStudentForm courses={this.state.user.courses} students={this.state.students} addStudent={this.addStudent}/>
+                            <br></br><Button onClick={this.handleClickAdd}>Add student to a course</Button>
+                            {this.state.displayAddStudent? <CourseStudentForm courses={this.state.user.courses} students={this.state.students} addStudent={this.addStudent}/> : null}
                     </Col>
                     <Col>
-                    <br></br><Button>Remove student from a course</Button>
-                             <RemoveStudentForm />
+                    <br></br><Button onClick={this.handleClickRemove}>Remove student from a course</Button>
+                             {this.state.displayRemoveStudent? <RemoveStudentForm /> : null }
                     </Col>
                 </Row>
                 <Row>
