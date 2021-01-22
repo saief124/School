@@ -13,8 +13,15 @@ class CourseStudentsController < ApplicationController
         if current_user
         course_id=params["course_id"].to_i
         student_id=params["student_id"].to_i
-        course_student=CourseStudent.create(course_id:course_id, student_id: student_id)
-        render :json=> course_student, status: 201
+        course_student=CourseStudent.new(course_id:course_id, student_id: student_id)
+            if course_student.valid?
+                course_student.save
+                render :json=> {:success=>"student added"}, status: 201
+            else
+                error_msg=course_student.errors.full_messages
+                render :json=>{:errors=>error_msg}
+            end
+
         else
             render :json =>{:msg=> "You are not authorized"}
         end

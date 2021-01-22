@@ -1,9 +1,8 @@
 class CoursesController < ApplicationController
 
-    before_action :authenticate!, only: [:index, :create]
+    before_action :authenticate!, only: [:index, :create, :update, :destroy]
     def index
         if current_user
-        # courses=Instructor.first.courses
         courses=current_user.courses
         render json: courses.as_json(
             except: [:password_digest, :created_at, :updated_at],
@@ -16,20 +15,25 @@ class CoursesController < ApplicationController
 
     def create
         if current_user
-            assignment=params["assignment"]
-            course_name=params["course_name"]
-            content=params["content"]
-            course= Course.create(course_name:course_name, content:content, assignment:assignment, instructor_id: current_user.id)
-            render json: course, status: 201 
+            @course=Course.new(course_name:params["course_name"], content:params["content"], assignment:params["assignment"], url:params["url"], instructor_id:current_user.id)
+            if @course.valid?
+                @course.save
+            render json: @course, status: 201 
+            else
+                # byebug
+                error_msg= @course.errors.full_messages
+                
+                render :json=>{:errors=>error_msg}, status: 400
+            end
+
         else
             render :json =>{:msg=> "You are not authorized"}
         end
     end
 
     def destroy
-        if current_user
-        id=params[:id].to_i
-        course=Course.find_by(id: id)
+        if current_user        
+        course=Course.find_by(id: params[:id])
         course.destroy
         render json: {:msg=>"Course was deleted"}
         else
@@ -39,15 +43,24 @@ class CoursesController < ApplicationController
 
     def update
     
-        if current_user
-            id=params[:id].to_i
-            course=Course.find_by(id: id)
-
-            course.update(course_name:params["course_name"], content:params["content"], assignment:params["assignment"], instructor_id: current_user.id)
+        if current_user            
+            course=Course.find_by(id: params[:id])
+            course.update(course_params)
+            if course.valid?
             render json: course, status: 201 
+            else
+                error_msg= course.errors.full_messages
+                
+                render :json=>{:errors=>error_msg}, status: 400
+            end
         else
             render json: {:msg=>"You are not authorized"}
             
         end
+    end
+
+    private
+    def course_params
+        params.require(:course).permit(:course_name, :content, :instructor_id, :assignment, :url)
     end
 end

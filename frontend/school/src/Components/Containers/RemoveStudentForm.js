@@ -31,6 +31,12 @@ handleSubmit = (e) =>{
         })
         .then(res=>res.json())
         .then(message=>{ alert(message["msg"])
+        this.props.handleClickRemove()
+        // this.setState({
+        //     cs:[{id:null}],
+        //     course_id:null,
+        //     student_id:null
+        // })
         }).catch(error => alert(error))
 }
 

@@ -16,6 +16,7 @@ class CourseStudentForm extends Component {
         e.preventDefault()
         this.props.addStudent(this.state)
         this.setState(this.initialState)
+        this.props.handleClickAdd()
     }
     render (){
         return(

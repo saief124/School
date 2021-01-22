@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import CourseUpdateForm from './Containers/CourseUpdateForm'
 import CourseContainer from './Containers/CourseContainer'
 import CourseForm from './Containers/CourseForm'
@@ -65,10 +65,15 @@ class Instructors extends React.Component{
     }
 
     addCourse=(course)=>{
+        // console.log(course.url)
+        // const fd = new FormData();
+        // fd.append('image', course.url, course.url.name)
+        // console.log(fd)
         const newCourse={
             course_name: course.course_name,
             content: course.content,
-            assignment: course.assignment
+            assignment: course.assignment,
+            url: course.url
         }
            fetch(course_url,{
                 method: 'POST',
@@ -80,9 +85,14 @@ class Instructors extends React.Component{
             })
             .then(res=>res.json())
             .then(addedCourse=>{
+                if (addedCourse["errors"]){
+                 alert(addedCourse["errors"])
+                }else{
                 const course_item=[...this.state.user.courses, addedCourse]
                 this.setState({user:{courses: course_item}})
-            })
+                alert("Course added")
+                this.handleClick()
+            }})
         .catch(error=>alert(error))
     }
 
@@ -125,12 +135,17 @@ class Instructors extends React.Component{
             body: JSON.stringify(updatedCourse)   
         }).then(res=>res.json())
         .then(courseObj =>{
+            
+            if (courseObj["errors"]){
+                alert(courseObj["errors"])
+            }
+            else{
             const courseList=[...this.state.user.courses].map(course=>{
                 return course.id === courseObj.id ? courseObj : course
             })
-            
+        
             this.setState({ user:{courses:courseList}, selectedCourse:{} })
-        })
+        }})
         .catch(error=>alert(error))
         let updateBool=!this.state.displayEdit
         this.setState({displayEdit:updateBool})
@@ -148,10 +163,15 @@ class Instructors extends React.Component{
         })
         .then(res=>res.json())
         .then(cores=>{
-            console.log(cores)
+            if(cores["success"]){
+            alert(cores["success"])
+            }
+            else{
+                alert(cores["errors"])
+            }
             // const course_item=[...this.state.user.courses, addedCourse]
             // this.setState({user:{courses: course_item}})
-        })
+        }).catch(error=>alert(error))
     }
 
     // getCourseStudent=(st)=>{
@@ -188,11 +208,11 @@ class Instructors extends React.Component{
                 <Row>
                     <Col>
                             <br></br><Button onClick={this.handleClickAdd}>Add student to a course</Button>
-                            {this.state.displayAddStudent? <CourseStudentForm courses={this.state.user.courses} students={this.state.students} addStudent={this.addStudent}/> : null}
+                            {this.state.displayAddStudent? <CourseStudentForm courses={this.state.user.courses} students={this.state.students} addStudent={this.addStudent} handleClickAdd={this.handleClickAdd}/> : null}
                     </Col>
                     <Col>
                     <br></br><Button onClick={this.handleClickRemove}>Remove student from a course</Button>
-                             {this.state.displayRemoveStudent? <RemoveStudentForm /> : null }
+                             {this.state.displayRemoveStudent? <RemoveStudentForm handleClickRemove={this.handleClickRemove}/> : null }
                     </Col>
                 </Row>
                 <Row>

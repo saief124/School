@@ -5,13 +5,17 @@ class CourseForm extends Component {
     initialState={
         course_name:"",
         content:"",
-        assignment:""
+        assignment:"",
+        url:"",
     }
     state= this.initialState
     handleInputChange =(e)=>{
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+    fileSelectedHandler=(e)=>{
+        this.setState({url:e.target.files[0]})
     }
 
     handleSubmit = (e) =>{
@@ -31,6 +35,9 @@ class CourseForm extends Component {
                         <Form.Label>Course Content</Form.Label>
                         <Form.Control as="textarea" rows={6} name="content" onChange={this.handleInputChange} value={this.state.content}/>
                     </Form.Group>
+                    {/* <Form.Group>
+                        <Form.File id="exampleFormControlFile1" label="File input" onChange={this.fileSelectedHandler}/>
+                    </Form.Group> */}
                     <Button variant="primary" type="submit" text-align="center">Submit</Button>
                   
                 </Form>
