@@ -19,11 +19,20 @@ class CourseStudentForm extends Component {
         this.props.handleClickAdd()
     }
     render (){
+        const formColor={
+            backgroundColor: '#B1A0CF'
+        }
+        const fontstyle={
+            fontFamily: "Brush Script MT",
+            // backgroundColor: '#cc8c55',
+            color: "#533A7B"
+        }
+
         return(
-        <div>
+        <div style={formColor}>
             <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Select Course</Form.Label>
+                <Form.Label><h5 style={fontstyle}>Select Course</h5></Form.Label>
                 <Form.Control as="select" value={this.state.course_id ?? ''} onChange={this.handleInputChange} name="course_id">
                     <option value={99}>Select a Course</option>
                     {this.props.courses.map(course=>
@@ -32,7 +41,7 @@ class CourseStudentForm extends Component {
                 </Form.Control>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Select students</Form.Label>
+                <Form.Label><h5 style={fontstyle}>Select Students</h5></Form.Label>
                 <Form.Control as="select" value={this.state.student_id ?? ''} onChange={this.handleInputChange} name="student_id">
                     <option value={99}>Select a Student</option>
                     {this.props.students.map(student=>

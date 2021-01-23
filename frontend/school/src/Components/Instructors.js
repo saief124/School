@@ -1,5 +1,6 @@
+// import '../App.css';
 import React from 'react'
-import { Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import CourseUpdateForm from './Containers/CourseUpdateForm'
 import CourseContainer from './Containers/CourseContainer'
 import CourseForm from './Containers/CourseForm'
@@ -189,16 +190,44 @@ class Instructors extends React.Component{
 
     render(){
         // console.log(this.state.course_students)
+       
+        const row1 = {
+            // backgroundColor: '#4CC92C'
+            //backgroundColor: '#4C94E8'
+            backgroundColor: '#D4CBE5'
+        }
+        const fontstyle={
+            fontFamily: "Brush Script MT",
+            // backgroundColor: '#cc8c55',
+            color: "#533A7B"
+        }
+        // const head2={
+        //     fontFamily: "Cambria Math",
+        //     color: '#F23030'
+
+        // }
+        
+        // const para={
+        //     fontFamily: "Russo One",
+        //     color: '#814d32'
+
+        // }
+        // const container = {
+        //     backgroundColor: '#362a1a'
+        //     //backgroundColor: '#4C94E8'
+        // }
+
         return(
             <div>
-                <Container>
-                <Row>
+                <Container fluid style={row1}>
+                <Row >
                     <Col>
-                    <h1>Instructors Page</h1>
-                    <p>Welcome {this.state.user.firstname}</p>
+                    {/* <p style={para}>Instructors Page</p> */}
+                    
+                    <h1 style={fontstyle}>Welcome {this.state.user.firstname}</h1>
                     </Col>
                 </Row>
-                <Row>
+                <Row >
                     <Col>     
                             <Button onClick={this.handleClick}>Add a Course</Button>
                             {this.state.display? <CourseForm addCourse={this.addCourse}/> : null}

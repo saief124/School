@@ -1,14 +1,27 @@
 import React from 'react';
-import { Button, Container, Row, Col, Accordion, Card } from 'react-bootstrap';
+import { Button, Row, Col, Accordion, Card, Jumbotron } from 'react-bootstrap';
+import './Course.css'
 
 function Course(props) {
     const { course_name, content, assignment, url}=props.course
+    // const head4={
+    //     fontFamily: "Cambria Math",
+    //     color: '#F23C30'
+        
+    // }
+   
+    const para={
+        fontFamily: "Russo One",
+        color: '#AF5AAD'
+
+    }
+    
     return (
-        <div>
-              <Container>
+        <div >
+              <Jumbotron >
                 <Row>
                     <Col>                    
-                    <h4>{course_name}</h4>
+                    <h2 style={para}>{course_name}</h2>
                     </Col>
                     <Col md="auto">
                     <Button variant="primary" size="sm" onClick={()=>props.deleteCourse(props.course)}>✘</Button>              
@@ -53,7 +66,7 @@ function Course(props) {
                     
                 </Row>                         
              
-                </Container>
+                </Jumbotron>
             
             
             

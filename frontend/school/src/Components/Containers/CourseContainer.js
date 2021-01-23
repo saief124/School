@@ -1,10 +1,13 @@
 import React from 'react';
 import Course from './Course'
 function CourseContainer(props) {
-    
+    const fontstyle={
+        fontFamily: "Brush Script MT",
+        color: "#533A7B"
+    }
     return (
         <div>
-            <h2>Your Courses</h2>
+            <br></br><h1 style={fontstyle}>Your Courses</h1>
             {props.courses.map(course=>
                 <Course
                 key={course.id}
