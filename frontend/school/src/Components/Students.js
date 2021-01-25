@@ -1,6 +1,7 @@
 import React from 'react'
 import StudentContainer from './Containers/StudentContainer'
-
+import AssignmentForm from './Containers/AssignmentForm'
+import { Container } from 'react-bootstrap';
 
 let students_url="http://localhost:3000/students"
 class Students extends React.Component{
@@ -8,7 +9,9 @@ class Students extends React.Component{
         firstname:"",
         lastname:"",
         email:"",
-        courses:[]    
+        courses:[],
+        selectedCA:{},
+        displayAssignment:false    
     }
     componentDidMount(){
     
@@ -25,47 +28,70 @@ class Students extends React.Component{
             email: std.email,
             courses: std.courses   
         }))
-        .catch(error=>console.log(error))
+        .catch(error=>alert(error))
     
     }
 
-    deleteCourse=(course)=>{
-        // fetch(`http://localhost:3000/courses/${course.id}`,{
-        //     method: 'DELETE',
-        //     headers:{
-        //         'Content-Type': 'application/json',
-        //         'Auth-Key': localStorage.getItem('auth_key')
-        //     }   
-        // })
-        // .then(res=>res.json())
-        // .then(message=>{ alert(message["msg"])
-        // })
-        // let array = this.state.user.courses;
+
+    editAssignment=(course)=>{
+        let newBool=!this.state.displayAssignment
+        this.setState({displayAssignment: newBool})
+        this.setState({selectedCA: course})
+        // console.log(this.state.selectedCA)
         
-        // let i = array.indexOf(course);
-        //     if (i > -1) {
-        //         array.splice(i, 1);
-        //     }
-        // this.setState({
-        //     user:{courses: array}
-        // })
-        console.log(course)
     }
-    editCourse=(course)=>{
-        // let newBool=!this.state.displayEdit
-        // this.setState({displayEdit: newBool})
-        // this.setState({selectedCourse: course})
-        console.log(course)
+
+    updateCourse=(updatedCourse)=>{
+        // console.log(updatedCourse)
+        fetch(`http://localhost:3000/courses/${updatedCourse.id}`,{
+            method: 'PATCH',
+            headers:{
+                'Content-Type': 'application/json',
+                'Auth-Key': localStorage.getItem('student_auth_key')
+            },
+            body: JSON.stringify(updatedCourse)   
+        }).then(res=>res.json())
+        .then(courseObj=> {
+            
+            if (courseObj["errors"]){
+                alert(courseObj["errors"])
+            }
+            else{
+            const courseList=[...this.state.courses].map(course=>{
+                return course.id === courseObj.id ? courseObj : course
+            })
+        
+            this.setState({courses:courseList, selectedCA:{} })
+        }})
+        .catch(error=>alert(error))
+        let updateBool=!this.state.displayAssignment
+        this.setState({displayAssignment:updateBool})
+        
     }
 
     render(){
-        
+        const row1 = {
+            backgroundColor: '#EF8354'
+            // backgroundColor: '#4C94E8'
+            // backgroundColor: '#D4CBE5'
+        }
+
+        const fontstyle={
+            fontFamily: "Brush Script MT",
+            // color: '#AF1D35',
+            color: '#780208'
+            // color: "#533A7B"
+        }
+       
         return(
             <div>
-                <h3>Student Page</h3>
-                <p>Welcome {this.state.firstname} {this.state.lastname}</p>
-                
-                <StudentContainer courses={this.state.courses} deleteCourse={this.deleteCourse} editCourse={this.editCourse}/>
+                <Container fluid style={row1}>
+                <h2 style={fontstyle}>Welcome {this.state.firstname} {this.state.lastname}</h2>
+                {this.state.displayAssignment?
+                <AssignmentForm selectedCA={this.state.selectedCA} updateCourse={this.updateCourse}/>
+                : null}
+                <StudentContainer courses={this.state.courses} editAssignment={this.editAssignment}/>
+                </Container>
             </div>
         )
     }

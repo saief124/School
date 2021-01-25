@@ -1,6 +1,4 @@
-.instructor{
-    backgroundColor: #1e81b0
-  }
+
   
   .jumbotron{
     background-image: url(https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1506&q=80);
@@ -8,14 +6,13 @@
     background-position: center;
     background-size: cover;
     padding-top: 10px;
-    font-weight: bold;
     margin-top: 20px;
     padding: 100px;
     border-radius: 50px;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
-.jumbotron h1, p {
+/* .jumbotron h1, p {
     background-color: #ffffff73;
     padding: 50px;
-}
+} */

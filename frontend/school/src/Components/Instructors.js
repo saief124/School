@@ -169,28 +169,14 @@ class Instructors extends React.Component{
             }
             else{
                 alert(cores["errors"])
-            }
-            // const course_item=[...this.state.user.courses, addedCourse]
-            // this.setState({user:{courses: course_item}})
+            }            
         }).catch(error=>alert(error))
     }
 
-    // getCourseStudent=(st)=>{
-    //     fetch(course_url,{
-    //         method: 'GET',
-    //         headers:{
-    //             'Content-Type': 'application/json',
-    //             'Auth-Key': localStorage.getItem('auth_key')
-    //         }                
-    //     })
-    //     .then(res=>res.json())
-    //     .then(course_students=>this.setState({course_students: course_students})
-    //     )
-    // }
+   
 
     render(){
-        // console.log(this.state.course_students)
-       
+ 
         const row1 = {
             // backgroundColor: '#4CC92C'
             //backgroundColor: '#4C94E8'
@@ -201,21 +187,7 @@ class Instructors extends React.Component{
             // backgroundColor: '#cc8c55',
             color: "#533A7B"
         }
-        // const head2={
-        //     fontFamily: "Cambria Math",
-        //     color: '#F23030'
-
-        // }
-        
-        // const para={
-        //     fontFamily: "Russo One",
-        //     color: '#814d32'
-
-        // }
-        // const container = {
-        //     backgroundColor: '#362a1a'
-        //     //backgroundColor: '#4C94E8'
-        // }
+   
 
         return(
             <div>

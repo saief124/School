@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
 
     def update
     
-        if current_user            
+        if current_user || student_user           
             course=Course.find_by(id: params[:id])
             course.update(course_params)
             if course.valid?

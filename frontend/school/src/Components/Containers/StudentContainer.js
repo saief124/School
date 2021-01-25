@@ -8,8 +8,7 @@ function StudentContainer(props) {
                 <Course
                 key={course.id}
                 course={course}
-                deleteCourse={props.deleteCourse}
-                editCourse={props.editCourse}
+                editAssignment={props.editAssignment}
                 />)
             }
         </div>
