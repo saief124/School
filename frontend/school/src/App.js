@@ -8,6 +8,7 @@ import Header from './Components/Header'
 import Login from './Components/Login'
 import StudentLogin from './Components/StudentLogin'
 import StudentProfile from './Components/StudentProfile'
+import StudentPage from './Components/StudentPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends React.Component {
@@ -34,16 +35,42 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
-        {/* <header className="App-header"> */}
+      <div >
         
           <Router>
             <Header handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} studentisLoggedIn={this.state.studentisLoggedIn} />
             <Switch>
             <Route exact path='/' component={HomePage}/>
-            <Route exact path='/students' component={Students}/>
-            <Route exact path='/instructors' component={Instructors}/>
-            <Route exact path='/studentprofile' component={StudentProfile}/>
+            <Route exact path='/students' component={()=>{
+              if(localStorage.getItem('student_auth_key')){
+                return <Students/>
+              }else{
+                return <Redirect to='/studentlogin'/>
+              } 
+              }}/>
+            <Route exact path='/instructors' component={()=>{
+              if(localStorage.getItem('auth_key')){
+                return <Instructors/>
+              }
+              else{
+                return <Redirect to="/login"/>
+              }
+              }}/>
+            <Route exact path='/studentprofile' component={()=>{
+                if(localStorage.getItem('student_auth_key')){
+                  return <StudentProfile/>
+                }else{
+                  return <Redirect to='/studentlogin'/>
+                } 
+                }}/>
+            <Route exact path='/mystudents' component={()=>{
+              if(localStorage.getItem('auth_key')){
+                return <StudentPage/>
+              }
+              else{
+                return <Redirect to="/login"/>
+              }
+              }}/>
             {this.state.studentisLoggedIn? 
             null:             
             <Route exact path ="/login" component= {()=>{

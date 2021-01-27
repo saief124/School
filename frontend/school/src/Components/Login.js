@@ -51,24 +51,22 @@ class Login extends Component {
   }
 
   render(){
+    const row = {
+        backgroundColor: '#007BFF',
+        fontFamily: "Brush Script MT",
+        color: "#533A7B"
+    }
   return (
-      <React.Fragment>
+      <div className="App">
+       
           <Row>
-              <Col>
-              
-              </Col>
-              <Col>
-              
-              </Col>
-              <Col>
-              
-              </Col>
+              .
           </Row>
           <Row>
               <Col>
               
               </Col>
-              <Col>
+              <Col style={row}>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -80,7 +78,7 @@ class Login extends Component {
                     <Form.Control type="password" name="password" value={this.state.password} placeholder= "Password" onChange={this.handleChange}/>
                     
                     </Form.Group>
-                    <Button variant="primary" type="submit" text-align="center">Submit</Button>                   
+                    <Button variant="danger" type="submit" text-align="center">Login</Button>                   
 
                 </Form>
               </Col>
@@ -96,7 +94,7 @@ class Login extends Component {
       <Col></Col>
       <Col></Col>
       </Row>
-      </React.Fragment>
+      </div>
   )
   }
 }

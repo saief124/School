@@ -33,23 +33,25 @@ class Students extends React.Component{
     }
 
 
-    editAssignment=(course)=>{
+    handleMakeNotes=(course)=>{
         let newBool=!this.state.displayAssignment
         this.setState({displayAssignment: newBool})
-        this.setState({selectedCA: course})
-        // console.log(this.state.selectedCA)
-        
+        this.setState({selectedCA: course})        
     }
 
-    updateCourse=(updatedCourse)=>{
-        // console.log(updatedCourse)
-        fetch(`http://localhost:3000/courses/${updatedCourse.id}`,{
-            method: 'PATCH',
+    makeNotes=(note)=>{
+        const newNote={
+            my_assignment:note.assignment,
+            my_course_name:note.course_name
+        }
+        
+        fetch('http://localhost:3000/notes',{
+            method: 'POST',
             headers:{
                 'Content-Type': 'application/json',
                 'Auth-Key': localStorage.getItem('student_auth_key')
             },
-            body: JSON.stringify(updatedCourse)   
+            body: JSON.stringify(newNote)   
         }).then(res=>res.json())
         .then(courseObj=> {
             
@@ -57,16 +59,11 @@ class Students extends React.Component{
                 alert(courseObj["errors"])
             }
             else{
-            const courseList=[...this.state.courses].map(course=>{
-                return course.id === courseObj.id ? courseObj : course
-            })
-        
-            this.setState({courses:courseList, selectedCA:{} })
-        }})
+                alert("Note Created")
+            }})        
         .catch(error=>alert(error))
-        let updateBool=!this.state.displayAssignment
-        this.setState({displayAssignment:updateBool})
-        
+        let newBo=!this.state.displayAssignment
+        this.setState({displayAssignment:newBo})        
     }
 
     render(){
@@ -88,9 +85,9 @@ class Students extends React.Component{
                 <Container fluid style={row1}>
                 <h2 style={fontstyle}>Welcome {this.state.firstname} {this.state.lastname}</h2>
                 {this.state.displayAssignment?
-                <AssignmentForm selectedCA={this.state.selectedCA} updateCourse={this.updateCourse}/>
+                <AssignmentForm selectedCA={this.state.selectedCA} makeNotes={this.makeNotes}/>
                 : null}
-                <StudentContainer courses={this.state.courses} editAssignment={this.editAssignment}/>
+                <StudentContainer courses={this.state.courses} handleMakeNotes={this.handleMakeNotes}/>
                 </Container>
             </div>
         )

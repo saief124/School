@@ -28,7 +28,7 @@ class AssignmentForm extends Component {
     }
     handleSubmit = (e) =>{
         e.preventDefault()
-        this.props.updateCourse(this.state)
+        this.props.makeNotes(this.state)
         this.setState({
             id: null,
             course_name:"",

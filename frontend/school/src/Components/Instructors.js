@@ -1,16 +1,18 @@
 // import '../App.css';
 import React from 'react'
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap'
 import CourseUpdateForm from './Containers/CourseUpdateForm'
 import CourseContainer from './Containers/CourseContainer'
 import CourseForm from './Containers/CourseForm'
-import CourseStudentForm from './Containers/CourseStudentForm';
+import CourseStudentForm from './Containers/CourseStudentForm'
 import RemoveStudentForm from './Containers/RemoveStudentForm'
+
 
 let students_url="http://localhost:3000/students"
 let instructors_url= "http://localhost:3000/instructors"
 let course_url= "http://localhost:3000/courses"
 let course_students_url="http://localhost:3000/course_students"
+
 class Instructors extends React.Component{
     state={
         user:{
@@ -23,7 +25,8 @@ class Instructors extends React.Component{
         displayEdit: false,
         students:[],
         displayRemoveStudent: false,
-        displayAddStudent: false
+        displayAddStudent: false,
+        
     }
 
     componentDidMount(){
@@ -40,6 +43,7 @@ class Instructors extends React.Component{
             )
 
         }
+ 
     handleClick=()=>{
         let newBoolean=!this.state.display
         this.setState({display: newBoolean})
@@ -55,8 +59,7 @@ class Instructors extends React.Component{
             }                
         })
         .then(res=>res.json())
-        .then(students=>
-            // console.log(students)
+        .then(students=>           
             this.setState({students: students})
         )
     }
@@ -64,12 +67,10 @@ class Instructors extends React.Component{
         let newBoolean=!this.state.displayRemoveStudent
         this.setState({displayRemoveStudent: newBoolean})
     }
+   
 
     addCourse=(course)=>{
-        // console.log(course.url)
-        // const fd = new FormData();
-        // fd.append('image', course.url, course.url.name)
-        // console.log(fd)
+ 
         const newCourse={
             course_name: course.course_name,
             content: course.content,
@@ -106,10 +107,10 @@ class Instructors extends React.Component{
             }   
         })
         .then(res=>res.json())
-        .then(message=>{ alert(message["msg"])
-        })
-        let array = this.state.user.courses;
-        
+        .then(message=>{ alert(message["msg"])        
+        }).catch(error=>alert(error))
+
+        let array = this.state.user.courses;        
         let i = array.indexOf(course);
             if (i > -1) {
                 array.splice(i, 1);
@@ -204,7 +205,7 @@ class Instructors extends React.Component{
                             <Button onClick={this.handleClick}>Add a Course</Button>
                             {this.state.display? <CourseForm addCourse={this.addCourse}/> : null}
                     </Col>
-
+               
                 </Row>
                 <Row>
                     <Col>

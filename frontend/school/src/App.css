@@ -1,3 +1,12 @@
+.App {
+    /* text-align: center; */
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20200809/pngtree-welcome-back-to-school-background-image_389856.jpg");
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
 /* .App {
   text-align: center;
   display: block;

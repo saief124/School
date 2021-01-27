@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     # before_action :authenticate!, only: [:index]
-    # before_action :studentauthenticate, only: [:index]
+ 
 
     def index
        
@@ -24,4 +24,37 @@ class StudentsController < ApplicationController
 
 
     end
+
+    def create
+       
+        if current_user
+            @student=Student.new(firstname:params["firstname"], lastname:params["lastname"], email:params["email"], password:params["password"])
+            if @student.valid?
+                @student.save
+                render :json=>{:mesg=> "Student created"}, status:201
+            else
+                error_msg= @student.errors.full_messages
+                
+                render :json=>{:errors=>error_msg}, status: 400
+            end
+        else
+            render :json =>{:msg=> "You are not authorized"}
+        end
+    end
+
+    def update
+        byebug
+    end
+
+    def destroy
+       
+        if current_user        
+        student=Student.find_by(id: params[:id])
+        student.destroy
+        render json: {:msg=>"Student was deleted"}
+        else
+        render json: {:msg=>"You are not authorized"}
+        end
+    end
+    
 end

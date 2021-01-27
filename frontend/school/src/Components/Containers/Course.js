@@ -27,8 +27,8 @@ function Course(props) {
                     <Button variant="primary" size="sm" onClick={()=>props.editCourse(props.course)}>✎</Button>          : null }
                     </Col>
                     <Col md="auto">
-                        {props.editAssignment?
-                        <Button variant="primary" size="sm" onClick={()=>props.editAssignment(props.course)}>Assignment</Button>          : null }
+                        {props.handleMakeNotes?
+                        <Button variant="primary" size="sm" onClick={()=>props.handleMakeNotes(props.course)}>Make notes</Button>          : null }
                     
                     </Col>
                 </Row>
