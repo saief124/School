@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Row, Col, Container} from 'react-bootstrap'
+import {Card, Row, Col, Container, Button} from 'react-bootstrap'
 import parse from 'html-react-parser'
 
 function StudentNotes(props) {
@@ -10,6 +10,7 @@ function StudentNotes(props) {
     }
     const {my_course_name, my_assignments}=props.note
     const asn=parse(my_assignments)
+    
     return (
         <div>
             <Container style={row} fluid>
@@ -23,12 +24,12 @@ function StudentNotes(props) {
                 <Card.Text>
                 {asn}
                 </Card.Text>
-                
+                <Button variant="danger" onClick={()=>props.deleteNote(props.note)}>X</Button>
             </Card.Body>
             </Card>
             </Col>
             <Col>
-            Col3
+            .
             </Col>
             </Row>
             <Row>

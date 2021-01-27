@@ -39,31 +39,41 @@ class StudentPage extends Component {
             },
             body: JSON.stringify(std)               
         }).then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(addedStudent=>{
+            if (addedStudent["errors"]){
+                alert(addedStudent["errors"])
+            }else{            
+                const student_item=[...this.state.students, addedStudent]
+                this.setState({students: student_item})
+                alert("Student added")
+                this.handleCreateStudents()             
+            }
+        })            
         .catch(error=>alert(error))
     }
 
-    handleRemoveStudent=(std)=>{
+    // handleRemoveStudent=(std)=>{
 
-        fetch(`http://localhost:3000/students/${std.id}`,{
-            method: 'DELETE',
-            headers:{
-                'Content-Type': 'application/json',
-                'Auth-Key': localStorage.getItem('auth_key')
-            }   
-        })
-        .then(res=>res.json())
-        .then(message=>{ alert(message["msg"])
-        }).catch(error=>alert(error))
+    //     fetch(`http://localhost:3000/students/${std.id}`,{
+    //         method: 'DELETE',
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //             'Auth-Key': localStorage.getItem('auth_key')
+    //         }   
+    //     })
+    //     .then(res=>res.json())
+    //     .then(message=>{ alert(message["msg"])
+    //     }).catch(error=>alert(error))
 
-        let array = this.state.students;        
-        let i = array.indexOf(std);
-            if (i > -1) {
-                array.splice(i, 1);
-            }
-        this.setState({students: array})
+    //     let array = this.state.students;        
+    //     let i = array.indexOf(std);
+    //         if (i > -1) {
+    //             array.splice(i, 1);
+    //         }
+    //     this.setState({students: array})
         
-    }
+    // }
+
     render() {
         const row1 = {
             backgroundColor: '#D4CBE5'
@@ -85,7 +95,9 @@ class StudentPage extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <StudentList students={this.state.students} handleRemoveStudent={this.handleRemoveStudent}/>
+                        <StudentList students={this.state.students} 
+                        //  handleRemoveStudent={this.handleRemoveStudent}
+                        />
                     </Row>
                 </Container>
             </div>

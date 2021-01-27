@@ -8,7 +8,7 @@ function StudentList(props) {
           <th scope="col">Firstname</th>
           <th scope="col">Lastname</th>
           <th scope="col">Email</th>
-          <th scope="col">Remove</th>
+          {/* <th scope="col">Remove</th> */}
         </tr>
       </thead>
       <tbody>
@@ -16,7 +16,8 @@ function StudentList(props) {
           props.students.map(student => (
             <StudentTable student={student}
               key={student.id}
-              handleRemoveStudent={props.handleRemoveStudent} />
+              // handleRemoveStudent={props.handleRemoveStudent}
+               />
           ))
         }
       </tbody>

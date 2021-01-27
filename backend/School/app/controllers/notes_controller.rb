@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-    before_action :authenticate!, only: [:create, :index]
+    before_action :authenticate!, only: [:create, :index, :destroy]
     def index
         if student_user
             notes=student_user.notes
@@ -23,6 +23,16 @@ class NotesController < ApplicationController
 
         else
             render :json =>{:msg=> "You are not authorized"}
+        end
+    end
+
+    def destroy
+        if student_user        
+        note=Note.find_by(id: params[:id])
+        note.destroy
+        render json: {:msg=>"Note was deleted"}
+        else
+        render json: {:msg=>"You are not authorized"}
         end
     end
 

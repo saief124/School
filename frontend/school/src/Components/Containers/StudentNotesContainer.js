@@ -5,11 +5,12 @@ function StudentNotesContainer(props) {
 
     return (
         <div>
-            <h3>My Notes</h3>
+            
             {props.notes.map(note=>
                 <StudentNotes
                 key={note.id}
-                note={note}/>)}
+                note={note}
+                deleteNote={props.deleteNote}/>)}
         </div>
     )
 }

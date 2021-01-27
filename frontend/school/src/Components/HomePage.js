@@ -36,6 +36,7 @@ class HomePage extends React.Component{
                 <p>This app allows instructors to: 
 
                     <li>Create a Course</li>
+                    <li>Add a Student</li>
                     <li>Add/Remove Student to a course</li> 
                     <li>Edit course content</li>
                     <li>Leave notes for your students</li>
@@ -48,7 +49,7 @@ class HomePage extends React.Component{
                     <li>View their course and its contents</li>
                     <li>View their instructor's note</li> 
                     <li>Work on their assignments/notes</li>
-                   
+                    <li>Delete their notes</li>
                     </p>
                 </Col>
             </Row>

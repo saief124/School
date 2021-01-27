@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
             @student=Student.new(firstname:params["firstname"], lastname:params["lastname"], email:params["email"], password:params["password"])
             if @student.valid?
                 @student.save
-                render :json=>{:mesg=> "Student created"}, status:201
+                render :json=>@student, status:201
             else
                 error_msg= @student.errors.full_messages
                 
