@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import StudentNotesContainer from './Containers/StudentNotesContainer'
+import {Container} from 'react-bootstrap'
 
 function StudentProfile() {
     const [notes, setNotes]=useState([])
@@ -36,19 +37,21 @@ function StudentProfile() {
         .then(res=>res.json())
         .then(message=>{ alert(message["msg"])
         setCounter(counter+1)        
-        // let array = notes;        
-        // let i = array.indexOf(note);
-        //     if (i > -1) {
-        //         array.splice(i, 1);
-        //     }        
-    //    setNotes(array)
         }).catch(error=>alert(error))      
        
     }
+    const bkgrnd={
+        backgroundColor:"#EF8354",
+        fontFamily: "Calibri",
+        color: "#780208"
+    }
         
     return (
-        <div>            
-            <StudentNotesContainer notes={notes} deleteNote={deleteNote}/>            
+        <div> 
+            <Container style={bkgrnd}  fluid > 
+            <h2>Your Notes</h2>  
+            <StudentNotesContainer notes={notes} deleteNote={deleteNote}/>
+            </Container>             
         </div>
     );
 }

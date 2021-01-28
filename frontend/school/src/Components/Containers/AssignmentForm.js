@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import AssignmentEditor from './AssignmentEditor'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class AssignmentForm extends Component {
     initialState={
@@ -39,27 +40,25 @@ class AssignmentForm extends Component {
     }
 
     render() {
+        const formColor={
+            backgroundColor: '#e1642e'
+        }
+        const fontstyle={
+            fontFamily: "Brush Script MT",
+            color: "#780208"
+        }
         return (
-            <div>
+            <div style={formColor}>
                 <Form onSubmit={this.handleSubmit}>
-                    <h2>Submit Assignment Form</h2>
-                    {/* <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Course Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Course Name" name="course_name" onChange={this.handleInputChange} value={this.state.course_name} />
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Course Content</Form.Label>
-                        <Form.Control as="textarea" rows={3} name="content" onChange={this.handleInputChange} value={this.state.content}/>
-                    </Form.Group> */}
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Course Assignment</Form.Label>
-                        <AssignmentEditor getAssignmentData={this.getAssignmentData} assignment={this.state.assignment}></AssignmentEditor>
-                        {/* <Form.Control as="textarea" rows={3} name="assignment" onChange={this.handleInputChange} value={this.state.assignment}/> */}
-                    </Form.Group>
-                    {/* <TextEditor gettextdata={this.gettextdata} url={this.state.url}></TextEditor> */}
-                    <Button variant="primary" type="submit" text-align="center">Submit</Button>
-                
-
+                    <h4 style={fontstyle}>{this.state.course_name}</h4>
+                    <Form.Group>                    
+                        <div className="editor">
+                        <CKEditor editor={ClassicEditor} data={this.state.assignment} onChange={(event, editor)=>{
+                            const data= editor.getData()
+                            this.setState({assignment:data})
+                        } }/></div>
+                    </Form.Group>                
+                    <Button variant="primary" type="submit" text-align="center">Submit</Button> 
                 </Form>
             </div>
         );

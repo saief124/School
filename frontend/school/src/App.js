@@ -6,6 +6,7 @@ import Instructors from './Components/Instructors'
 import HomePage from './Components/HomePage'
 import Header from './Components/Header'
 import Login from './Components/Login'
+import Signup from './Components/Signup'
 import StudentLogin from './Components/StudentLogin'
 import StudentProfile from './Components/StudentProfile'
 import StudentPage from './Components/StudentPage'
@@ -76,7 +77,10 @@ class App extends React.Component {
             <Route exact path ="/login" component= {()=>{
                 return <Login handleLogin={this.handleLogin}/>
             }}/>}
-
+            {this.state.studentisLoggedIn?
+            null :
+            <Route exact path="/signup" component= {()=><Signup handleLogin={this.handleLogin}/>}/>
+            }
             <Route exact path ="/logout" component = {()=>{
               localStorage.clear()
               this.setState({isLoggedIn: false})

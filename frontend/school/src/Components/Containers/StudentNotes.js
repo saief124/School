@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 
 function StudentNotes(props) {
     const row = {
-        backgroundColor: '#EF8354',
+        
         fontFamily: "Calibri",
         color: "#780208"
     }
@@ -20,9 +20,9 @@ function StudentNotes(props) {
              <Card style={{ width: '18rem' }}>
             
             <Card.Body>
-                <Card.Title>{my_course_name}</Card.Title>
+                <Card.Title>{my_course_name ?? ''}</Card.Title>
                 <Card.Text>
-                {asn}
+                {asn ?? ''}
                 </Card.Text>
                 <Button variant="danger" onClick={()=>props.deleteNote(props.note)}>X</Button>
             </Card.Body>

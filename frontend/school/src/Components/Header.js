@@ -16,6 +16,7 @@ const handleLoginRender=(isLoggedIn)=>{
         return(
             <div style={blue}>
             <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/signup">Signup</Nav.Link>
             </div>
         )
     }

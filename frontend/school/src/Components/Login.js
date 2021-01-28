@@ -53,7 +53,7 @@ class Login extends Component {
   render(){
     const row = {
         backgroundColor: '#007BFF',
-        fontFamily: "Brush Script MT",
+        fontFamily: "Calibri",
         color: "#533A7B"
     }
   return (

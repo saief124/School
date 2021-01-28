@@ -35,10 +35,10 @@ class HomePage extends React.Component{
                 
                 <p>This app allows instructors to: 
 
-                    <li>Create a Course</li>
-                    <li>Add a Student</li>
-                    <li>Add/Remove Student to a course</li> 
+                    <li>Create a Course and its contents</li>
                     <li>Edit course content</li>
+                    <li>Create Student Credentials</li>
+                    <li>Add/Remove Student to a course</li>                     
                     <li>Leave notes for your students</li>
                     <li>Create self-assignments for students</li>
                     </p>
@@ -57,7 +57,7 @@ class HomePage extends React.Component{
             <Row style={hea}>
                 <Col sm={3}></Col>
                 <Col sm={8}>
-                <p>If you are an instructor and would like to use this app please contact us.</p>
+                <p>If you are an instructor and would like to use this app please signup or login.</p>
                 <p>If you are a student, your instructor will email you your login information.</p>
                 </Col>
             </Row>

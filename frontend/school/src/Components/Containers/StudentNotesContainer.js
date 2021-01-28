@@ -2,7 +2,7 @@ import React from 'react'
 import StudentNotes from './StudentNotes'
 
 function StudentNotesContainer(props) {
-
+  
     return (
         <div>
             
