@@ -2,8 +2,7 @@ import React from 'react';
 import Course from './Course'
 function StudentContainer(props) {
     return (
-        <div>
-            
+        <div>            
             {props.courses.map(course=>
                 <Course
                 key={course.id}

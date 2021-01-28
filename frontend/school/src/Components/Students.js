@@ -1,7 +1,7 @@
 import React from 'react'
 import StudentContainer from './Containers/StudentContainer'
 import AssignmentForm from './Containers/AssignmentForm'
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 let students_url="http://localhost:3000/students"
 class Students extends React.Component{
@@ -83,11 +83,22 @@ class Students extends React.Component{
         return(
             <div>
                 <Container fluid style={row1}>
-                <h2 style={fontstyle}>Welcome {this.state.firstname} {this.state.lastname}</h2>
-                {this.state.displayAssignment?
-                <AssignmentForm selectedCA={this.state.selectedCA} makeNotes={this.makeNotes}/>
-                : null}
+                <Row>
+                    <Col>
+                    <h2 style={fontstyle}>Welcome {this.state.firstname} {this.state.lastname}</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                    {this.state.displayAssignment?
+                    <AssignmentForm selectedCA={this.state.selectedCA} makeNotes={this.makeNotes}/>
+                    : null}
+                    </Col>
+                </Row>
+                <Row><Col>
                 <StudentContainer courses={this.state.courses} handleMakeNotes={this.handleMakeNotes}/>
+                </Col>
+                </Row>
                 </Container>
             </div>
         )

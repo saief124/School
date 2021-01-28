@@ -124,7 +124,6 @@ class Instructors extends React.Component{
         let newBool=!this.state.displayEdit
         this.setState({displayEdit: newBool})
         this.setState({selectedCourse: course})
-        // console.log(course)
     }
 
     updateCourse=(updatedCourse)=>{
@@ -194,9 +193,7 @@ class Instructors extends React.Component{
             <div>
                 <Container fluid style={row1}>
                 <Row >
-                    <Col>
-                    {/* <p style={para}>Instructors Page</p> */}
-                    
+                    <Col>                    
                     <h1 style={fontstyle}>Welcome {this.state.user.firstname}</h1>
                     </Col>
                 </Row>
@@ -219,22 +216,17 @@ class Instructors extends React.Component{
                 </Row>
                 <Row>
                     <Col>
-                    {this.state.displayEdit?<CourseUpdateForm updateCourse={this.updateCourse} selectedCourse={this.state.selectedCourse}/> : null}
+                    {this.state.displayEdit? <CourseUpdateForm updateCourse={this.updateCourse} selectedCourse={this.state.selectedCourse}/> : null}
                     </Col>
                     
                 </Row>
                 <Row>
                     <Col>
                     <CourseContainer courses={this.state.user.courses} deleteCourse={this.deleteCourse} editCourse={this.editCourse}></CourseContainer><br></br>
-                    </Col>
-
-   
+                    </Col>   
                 </Row>
 
                 </Container>
-                
-                
-                {/* <StudentContainer></StudentContainer> */}
                 
          
             </div>

@@ -83,7 +83,8 @@ function Course(props) {
                     
                         </Accordion>
                     </Col>                           
-                </Row>                      
+                </Row>
+                   
              
                 </Jumbotron>
             

@@ -43,7 +43,7 @@ function StudentProfile() {
     const bkgrnd={
         backgroundColor:"#EF8354",
         fontFamily: "Calibri",
-        color: "#780208"
+        color: "#780208",        
     }
         
     return (

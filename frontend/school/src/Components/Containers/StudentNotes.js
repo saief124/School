@@ -4,10 +4,11 @@ import parse from 'html-react-parser'
 
 function StudentNotes(props) {
     const row = {
-        
+        // backgroundColor: '#EFff54',
         fontFamily: "Calibri",
         color: "#780208"
     }
+   
     const {my_course_name, my_assignments}=props.note
     const asn=parse(my_assignments)
     
@@ -15,9 +16,9 @@ function StudentNotes(props) {
         <div>
             <Container style={row} fluid>
             <Row>
-                {/* <Col>Col1</Col> */}
+                <Col sm={3} ></Col>
                 <Col>
-             <Card style={{ width: '18rem' }}>
+             <Card style={{ width: '50rem' }}>
             
             <Card.Body>
                 <Card.Title>{my_course_name ?? ''}</Card.Title>
@@ -28,12 +29,14 @@ function StudentNotes(props) {
             </Card.Body>
             </Card>
             </Col>
-            <Col>
-            .
-            </Col>
+            <Col sm={2}>   </Col>
             </Row>
             <Row>
-                ..........................................................................
+                <Col sm={3}></Col>
+                <Col>
+                <p></p>
+                </Col>
+                <Col sm={2}></Col>
             </Row>
             </Container>
         </div>
