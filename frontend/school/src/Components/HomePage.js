@@ -7,6 +7,8 @@ class HomePage extends React.Component{
         const row = {
             // backgroundColor: '#007BFF',
             fontFamily: "Helvetica",
+            fontSize: "28px",
+            fontStyle: "italic"
         }
         const hea={
             color: '#FFFFFF'
@@ -24,7 +26,7 @@ class HomePage extends React.Component{
                 
                 </Col>
                 <Col sm={8}>
-            <h2>Welcome to Cranvas</h2>
+            <h2>Welcome to WareCourse</h2>
                 </Col>     
             </Row>
             <Row >                .

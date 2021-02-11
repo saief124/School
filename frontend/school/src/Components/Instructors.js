@@ -207,22 +207,28 @@ class Instructors extends React.Component{
                 <Row>
                     <Col>
                             <br></br><Button onClick={this.handleClickAdd}>Add student to a course</Button>
-                            {this.state.displayAddStudent? <CourseStudentForm courses={this.state.user.courses} students={this.state.students} addStudent={this.addStudent} handleClickAdd={this.handleClickAdd}/> : null}
+                            {this.state.displayAddStudent? <CourseStudentForm 
+                            courses={this.state.user.courses} 
+                            students={this.state.students} 
+                            addStudent={this.addStudent} 
+                            handleClickAdd={this.handleClickAdd}
+                            /> 
+                            : null}
                     </Col>
                     <Col>
                     <br></br><Button onClick={this.handleClickRemove}>Remove student from a course</Button>
-                             {this.state.displayRemoveStudent? <RemoveStudentForm handleClickRemove={this.handleClickRemove}/> : null }
+                            {this.state.displayRemoveStudent? <RemoveStudentForm handleClickRemove={this.handleClickRemove}/> : null }
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                    {this.state.displayEdit? <CourseUpdateForm updateCourse={this.updateCourse} selectedCourse={this.state.selectedCourse}/> : null}
+                            {this.state.displayEdit? <CourseUpdateForm updateCourse={this.updateCourse} selectedCourse={this.state.selectedCourse}/> : null}
                     </Col>
                     
                 </Row>
                 <Row>
                     <Col>
-                    <CourseContainer courses={this.state.user.courses} deleteCourse={this.deleteCourse} editCourse={this.editCourse}></CourseContainer><br></br>
+                            <CourseContainer courses={this.state.user.courses} deleteCourse={this.deleteCourse} editCourse={this.editCourse}></CourseContainer><br></br>
                     </Col>   
                 </Row>
 

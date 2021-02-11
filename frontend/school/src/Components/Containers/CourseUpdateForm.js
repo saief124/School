@@ -60,8 +60,8 @@ class CourseUpdateForm extends Component {
         }
         return (
             <div style={formColor}>
-                <Form onSubmit={this.handleSubmit}>
-                    <h2>Edit Form</h2>
+                <h2 style={fontstyle}>Edit Course Form</h2><br></br>
+                <Form onSubmit={this.handleSubmit}>                    
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label><h5 style={fontstyle}>Course Name</h5></Form.Label>
                         <Form.Control type="text" placeholder="Enter Course Name" name="course_name" onChange={this.handleInputChange} value={this.state.course_name} />
@@ -75,7 +75,6 @@ class CourseUpdateForm extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label><h5 style={fontstyle}>Course Assignment</h5></Form.Label>
                         <AssignmentEditor getAssignmentData={this.getAssignmentData} assignment={this.state.assignment}></AssignmentEditor>
-                        {/* <Form.Control as="textarea" rows={2} name="assignment" onChange={this.handleInputChange} value={this.state.assignment}/> */}
                     </Form.Group>
                     
                     <Button variant="primary" type="submit" text-align="center">Submit</Button>
