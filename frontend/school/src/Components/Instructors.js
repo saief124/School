@@ -5,7 +5,7 @@ import CourseUpdateForm from './Containers/CourseUpdateForm'
 import CourseContainer from './Containers/CourseContainer'
 import CourseForm from './Containers/CourseForm'
 import CourseStudentForm from './Containers/CourseStudentForm'
-import RemoveStudentForm from './Containers/RemoveStudentForm'
+
 
 
 let students_url="http://localhost:3000/students"
@@ -24,7 +24,7 @@ class Instructors extends React.Component{
         selectedCourse: {},
         displayEdit: false,
         students:[],
-        displayRemoveStudent: false,
+        
         displayAddStudent: false,
         
     }
@@ -63,10 +63,7 @@ class Instructors extends React.Component{
             this.setState({students: students})
         )
     }
-    handleClickRemove=()=>{
-        let newBoolean=!this.state.displayRemoveStudent
-        this.setState({displayRemoveStudent: newBoolean})
-    }
+   
    
 
     addCourse=(course)=>{
@@ -215,10 +212,7 @@ class Instructors extends React.Component{
                             /> 
                             : null}
                     </Col>
-                    <Col>
-                    <br></br><Button onClick={this.handleClickRemove}>Remove student from a course</Button>
-                            {this.state.displayRemoveStudent? <RemoveStudentForm handleClickRemove={this.handleClickRemove}/> : null }
-                    </Col>
+               
                 </Row>
                 <Row>
                     <Col>

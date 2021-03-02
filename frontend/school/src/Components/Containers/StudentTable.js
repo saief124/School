@@ -7,11 +7,11 @@ function StudentTable(props) {
       <td>{firstname}</td>
       <td>{lastname}</td>
       <td>{email}</td>
-      {/* <td>
+      <td>
         <button onClick={() => props.handleRemoveStudent(props.student)} type="button" className="btn btn-danger">
           🅇
         </button>
-      </td> */}
+      </td>
     </tr>
     )
 }

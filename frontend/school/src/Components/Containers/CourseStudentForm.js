@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, FormGroup } from 'react-bootstrap';
+import Search from './Search'
+
 class CourseStudentForm extends Component {
     initialState={
         course_id:null,
-        student_id:null
+        student_id:null,
+        searchTerm:''
     }
     state= this.initialState
     handleInputChange =(e)=>{
@@ -11,6 +14,12 @@ class CourseStudentForm extends Component {
             [e.target.name]: e.target.value
         })
     }
+
+    handleSearch = (e) => {
+        this.setState({
+          searchTerm:e.target.value
+        })
+      }
 
     handleSubmit = (e) =>{
         e.preventDefault()
@@ -24,10 +33,10 @@ class CourseStudentForm extends Component {
         }
         const fontstyle={
             fontFamily: "Brush Script MT",
-            // backgroundColor: '#cc8c55',
             color: "#533A7B"
         }
-
+        let searchstd=this.props.students.filter(student=> student.firstname.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+        console.log(searchstd)
         return(
         <div style={formColor}>
             <Form onSubmit={this.handleSubmit}>
@@ -40,13 +49,17 @@ class CourseStudentForm extends Component {
                     )}
                 </Form.Control>
             </Form.Group>
+                      
             <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label><h5 style={fontstyle}>Select Students</h5></Form.Label>
+                <Search handleSearch={this.handleSearch}/><br></br>
                 <Form.Control as="select" value={this.state.student_id ?? ''} onChange={this.handleInputChange} name="student_id">
                     <option value={99}>Select a Student</option>
-                    {this.props.students.map(student=>
+                    {/* {this.props.students.map(student=>
                         <option key={student.id} value={student.id}>{student.firstname} {student.lastname}</option>
-                    )}
+                    )} */}
+                    {searchstd.map(student=>
+                    <option key={student.id} value={student.id}>{student.firstname} {student.lastname}</option>)}
                 </Form.Control>
             </Form.Group>
             <Button variant="primary" type="submit" text-align="center">Add</Button>

@@ -8,6 +8,20 @@ class RemoveStudentForm extends Component {
     course_id:null,
     student_id:null
 }
+componentDidMount() {
+        
+    fetch(course_url,{
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Auth-Key': localStorage.getItem('auth_key')
+        }                
+    })
+    .then(res=>res.json())
+    .then(cs=>this.setState({cs: cs})
+    )
+}    
+
 handleInputChange =(e)=>{
     this.setState({
         [e.target.name]: e.target.value
@@ -48,19 +62,6 @@ getEnrolledStudents=()=>{
     return(filteredstudents[0] ?? [])
 }
 
-    componentDidMount() {
-        
-            fetch(course_url,{
-                method: 'GET',
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Auth-Key': localStorage.getItem('auth_key')
-                }                
-            })
-            .then(res=>res.json())
-            .then(cs=>this.setState({cs: cs})
-            )
-    }    
 
     render() {
         const formColor={
