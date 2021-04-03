@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import StudentList from './Containers/StudentList'
 import { Button, Container, Row, Col, Form } from 'react-bootstrap'
-import AddStudentForm from './Containers/AddStudentForm'
-import RemoveStudentForm from './Containers/RemoveStudentForm'
 
-let students_url="http://localhost:3000/students"
 let course_url= "http://localhost:3000/courses"
 class StudentPage extends Component {
     state={
         cs:[{id:null}],
         course_id:null,
-        student_id:null,
-             displayMakeStudent: false,
+        student_id:null
     }
     componentDidMount() {
             
@@ -26,33 +22,6 @@ class StudentPage extends Component {
         .then(cs=>this.setState({cs: cs})
         )
     }  
-    handleCreateStudents=()=>{
-        let makestudent=!this.state.displayMakeStudent
-        this.setState({displayMakeStudent: makestudent})
-    } 
-
-    makeStudent=(std)=>{
-        
-        fetch(students_url,{
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json',
-                'Auth-Key': localStorage.getItem('auth_key')
-            },
-            body: JSON.stringify(std)               
-        }).then(res=>res.json())
-        .then(addedStudent=>{
-            if (addedStudent["errors"]){
-                alert(addedStudent["errors"])
-            }else{            
-                const student_item=[...this.state.students, addedStudent]
-                this.setState({students: student_item})
-                alert("Student added")
-                this.handleCreateStudents()             
-            }
-        })            
-        .catch(error=>alert(error))
-    }
 
     handleRemoveStudent=(std)=>{
         let course = this.state.cs.find(item => item.id === parseInt(this.state.course_id))
@@ -114,16 +83,9 @@ class StudentPage extends Component {
         return (
             <div>
                 <Container fluid style={row1}>
-                <Row><Col sm={3}><h3 style={fontstyle}>My Students</h3></Col></Row>
-                <Row> 
-                        
-                    
-                        <Col>
-                        <Button onClick={this.handleCreateStudents}>Create Student Credentials</Button>
-                        {this.state.displayMakeStudent? <AddStudentForm makeStudent={this.makeStudent}/> : null}
-                        </Col>
-                    </Row>
-                    <Row>
+                
+                    <Row>  </Row>
+                    <Row><Col>
                     <Form >
                         <Form.Group controlId="exampleForm.ControlSelect1">
                             <Form.Label><h5 style={fontstyle}>Select Course</h5></Form.Label>
@@ -136,8 +98,11 @@ class StudentPage extends Component {
                         </Form.Group>
                  
                     </Form>
-                    </Row>
-                    
+                    </Col>
+                    <Col>
+                    <p></p>
+                    </Col></Row>
+                    <Row><Col sm={3}><h3 style={fontstyle}>My Students</h3></Col></Row>
                     
                     <Row>
                         {this.getEnrolledStudents()? <StudentList students={this.getEnrolledStudents()} 
