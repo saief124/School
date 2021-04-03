@@ -13,9 +13,6 @@ class Login extends Component {
       }
   }
 
-//   handleSignup = (username, email, password) => {};
-//   handleLogin = (username, password) => {}
-
   handleChange=(e)=> {
       const {name, value} = e.target
       this.setState({
@@ -87,9 +84,6 @@ class Login extends Component {
               </Col>
           </Row>
           <Row>
- 
-      {/* <input type="text" name="email" value={this.state.email} placeholder ="Email" onChange={this.handleChange}/><br></br> */}
-        {/* <input type="password" name="password" value={this.state.password} placeholder= "Password" onChange={this.handleChange}/><br></br> */}
       <Col></Col>
       <Col></Col>
       <Col></Col>

@@ -31,7 +31,6 @@ const handleStudentLognRender=(studentisLoggedIn)=>{
             <Nav.Link href="/studentlogout" >Logout</Nav.Link><br></br>
             <Nav.Link href="/students" >My Courses</Nav.Link>
             <Nav.Link href="/studentprofile" >My Notes</Nav.Link>
-            
             </div>
         )
     }else{

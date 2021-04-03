@@ -69,15 +69,11 @@ class Students extends React.Component{
     render(){
         const row1 = {
             backgroundColor: '#EF8354'
-            // backgroundColor: '#4C94E8'
-            // backgroundColor: '#D4CBE5'
         }
 
         const fontstyle={
             fontFamily: "Brush Script MT",
-            // color: '#AF1D35',
             color: '#780208'
-            // color: "#533A7B"
         }
        
         return(
@@ -103,14 +99,6 @@ class Students extends React.Component{
             </div>
         )
     }
-
-
-
-
-
-
-
-
 }
 
 export default Students;

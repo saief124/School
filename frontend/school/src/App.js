@@ -114,7 +114,7 @@ class App extends React.Component {
             <Route component={()=>{return <Redirect to='/'/>}}/>
             </Switch>
           </Router>
-        {/* </header> */}
+        
       </div>
     );
   }

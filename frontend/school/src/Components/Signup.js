@@ -82,10 +82,7 @@ class Signup extends Component {
                             <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={this.state.password} placeholder= "Password" onChange={this.handleChange}/>                      
                         </Form.Group>
-                        {/* <input type="text" name="firstname" value={this.state.firstname} placeholder ="Firstname" onChange={this.handleChange}/><br></br>
-                        <input type="text" name="lastname" value={this.state.lastname} placeholder ="Lastname" onChange={this.handleChange}/><br></br> */}
-                        {/* <input type="text" name="email" value={this.state.phone} placeholder ="email" onChange={this.handleChange}/><br></br>
-                        <input type="password" name="password" value={this.state.password} placeholder= "Password" onChange={this.handleChange}/><br></br> */}
+                        
                         <Button variant="danger" type="submit" text-align="center">Sign Up</Button>
                         
                     </Form>

@@ -26,7 +26,6 @@ class StudentLogin extends Component {
               email: this.state.email,            
               password: this.state.password    
       }
-    //   console.log(User)
       fetch('http://localhost:3000/studentlogin',{
           method: 'POST',
           headers:{
