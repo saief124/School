@@ -8,6 +8,7 @@ import Header from './Components/Header'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
 import StudentLogin from './Components/StudentLogin'
+import StudentSignup from './Components/StudentSignup'
 import StudentProfile from './Components/StudentProfile'
 import StudentPage from './Components/StudentPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -42,6 +43,7 @@ class App extends React.Component {
             <Header handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} studentisLoggedIn={this.state.studentisLoggedIn} />
             <Switch>
             <Route exact path='/' component={HomePage}/>
+
             <Route exact path='/students' component={()=>{
               if(localStorage.getItem('student_auth_key')){
                 return <Students/>
@@ -49,6 +51,7 @@ class App extends React.Component {
                 return <Redirect to='/studentlogin'/>
               } 
               }}/>
+
             <Route exact path='/instructors' component={()=>{
               if(localStorage.getItem('auth_key')){
                 return <Instructors/>
@@ -57,6 +60,7 @@ class App extends React.Component {
                 return <Redirect to="/login"/>
               }
               }}/>
+
             <Route exact path='/studentprofile' component={()=>{
                 if(localStorage.getItem('student_auth_key')){
                   return <StudentProfile/>
@@ -64,6 +68,7 @@ class App extends React.Component {
                   return <Redirect to='/studentlogin'/>
                 } 
                 }}/>
+
             <Route exact path='/mystudents' component={()=>{
               if(localStorage.getItem('auth_key')){
                 return <StudentPage/>
@@ -72,11 +77,13 @@ class App extends React.Component {
                 return <Redirect to="/login"/>
               }
               }}/>
+
             {this.state.studentisLoggedIn? 
             null:             
             <Route exact path ="/login" component= {()=>{
                 return <Login handleLogin={this.handleLogin}/>
             }}/>}
+
             {this.state.studentisLoggedIn?
             null :
             <Route exact path="/signup" component= {()=><Signup handleLogin={this.handleLogin}/>}/>
@@ -86,11 +93,19 @@ class App extends React.Component {
               this.setState({isLoggedIn: false})
               return <Redirect to="/"/>
             }}/>
-              {this.state.isLoggedIn? 
+
+            {this.state.isLoggedIn? 
             null:  
             <Route exact path="/studentlogin" component={()=>{
               return <StudentLogin handleLogin={this.handleLogin}/>
             }}/>}
+
+            {this.state.isLoggedIn? 
+            null:  
+            <Route exact path="/studentsignup" component={()=>{
+              return <StudentSignup handleLogin={this.handleLogin}/>
+            }}/>} 
+
             <Route exact path ="/studentlogout" component = {()=>{
               localStorage.clear()
               this.setState({studentisLoggedIn: false})

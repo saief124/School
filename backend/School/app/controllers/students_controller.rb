@@ -1,6 +1,4 @@
 class StudentsController < ApplicationController
-    # before_action :authenticate!, only: [:index]
- 
 
     def index
        
@@ -26,24 +24,21 @@ class StudentsController < ApplicationController
     end
 
     def create
-       
-        if current_user
-            @student=Student.new(firstname:params["firstname"], lastname:params["lastname"], email:params["email"], password:params["password"])
-            if @student.valid?
-                @student.save
-                render :json=>@student, status:201
-            else
-                error_msg= @student.errors.full_messages
-                
-                render :json=>{:errors=>error_msg}, status: 400
-            end
+        
+        @student = Student.new(student_params)
+        if @student.valid?
+            @student.save
+            payload = {student_id:@student.id}
+            token = JWT.encode(payload, ENV['SUPER_SECRET_KEY'], 'HS256')
+            render :json=> {student_auth_key: token}
         else
-            render :json =>{:msg=> "You are not authorized"}
+            error_msg=@student.errors.full_messages
+            render :json=>{:errors=>error_msg}, status: 400
         end
     end
 
     def update
-        byebug
+       
     end
 
     def destroy
@@ -57,4 +52,8 @@ class StudentsController < ApplicationController
         end
     end
     
+    private
+    def student_params
+        params.require(:student).permit(:firstname, :lastname, :email, :password)
+    end
 end
