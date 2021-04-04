@@ -4,7 +4,6 @@ import parse from 'html-react-parser'
 
 function StudentNotes(props) {
     const row = {
-        // backgroundColor: '#EFff54',
         fontFamily: "Calibri",
         color: "#780208"
     }

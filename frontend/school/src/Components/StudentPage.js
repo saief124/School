@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import StudentList from './Containers/StudentList'
-import { Button, Container, Row, Col, Form } from 'react-bootstrap'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 
 let course_url= "http://localhost:3000/courses"
 class StudentPage extends Component {

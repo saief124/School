@@ -1,11 +1,9 @@
-// import '../App.css';
 import React from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap'
 import CourseUpdateForm from './Containers/CourseUpdateForm'
 import CourseContainer from './Containers/CourseContainer'
 import CourseForm from './Containers/CourseForm'
 import CourseStudentForm from './Containers/CourseStudentForm'
-
 
 
 let students_url="http://localhost:3000/students"
@@ -63,8 +61,6 @@ class Instructors extends React.Component{
             this.setState({students: students})
         )
     }
-   
-   
 
     addCourse=(course)=>{
  
@@ -149,6 +145,7 @@ class Instructors extends React.Component{
         this.setState({displayEdit:updateBool})
         
     }
+
     addStudent=(cs)=>{
         
         fetch(course_students_url,{
@@ -170,18 +167,13 @@ class Instructors extends React.Component{
         }).catch(error=>alert(error))
     }
 
-   
-
     render(){
  
         const row1 = {
-            // backgroundColor: '#4CC92C'
-            //backgroundColor: '#4C94E8'
             backgroundColor: '#D4CBE5'
         }
         const fontstyle={
             fontFamily: "Brush Script MT",
-            // backgroundColor: '#cc8c55',
             color: "#533A7B"
         }
    

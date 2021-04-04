@@ -5,7 +5,6 @@ class HomePage extends React.Component{
     render(){
 
         const row = {
-            // backgroundColor: '#007BFF',
             fontFamily: "Helvetica",
             fontSize: "28px",
             fontStyle: "italic"
