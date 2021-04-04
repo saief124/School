@@ -15,7 +15,7 @@ function StudentNotes(props) {
         <div>
             <Container style={row} fluid>
             <Row>
-                <Col sm={3} ></Col>
+                
                 <Col>
              <Card style={{ width: '50rem' }}>
             
